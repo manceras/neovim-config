@@ -1,19 +1,4 @@
--- Config for both neovim and VSCode Neovim:
-require('settings')
-require('keymaps')
--- Configs only for Neovim:
-require('plugins')
-require('languages')
-require('_cmp')
-require('themes')
-require('_lualine')
-require('markdown')
-require('nord_mod')
-require('vim-vsnip')
-require('_harpoon')
-require('indent_blankline')
-require('_gitsigns')
-require('treesitter')
+require("config.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -27,3 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
+
+require("lazy").setup("plugins")
+require("config.keymaps")
+require("config.colorscheme")
+require("config.lsp")
