@@ -1,0 +1,16 @@
+-- Config for both neovim and VSCode Neovim:
+require('settings')
+require('keymaps')
+-- Configs only for Neovim:
+require('plugins')
+require('languages')
+require('_cmp')
+require('themes')
+require('_lualine')
+require('markdown')
+require('nord_mod')
+require('vim-vsnip')
+require('_harpoon')
+require('indent_blankline')
+require('_gitsigns')
+require('treesitter')
