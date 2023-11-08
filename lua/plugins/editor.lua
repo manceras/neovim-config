@@ -63,10 +63,46 @@ return {
 
   },
   { "alvan/vim-closetag" },
-  { "jiangmiao/auto-pairs" },
   { "tpope/vim-repeat" },
-  { "tpope/vim-surround" },
-  { "tpope/vim-fugitive" },
-  { "tpope/vim-commentary" },
-  { "sheerun/vim-polyglot" }
+  { "sheerun/vim-polyglot" },
+  {
+    'echasnovski/mini.comment',
+    version = false,
+    config = function ()
+      require("mini.comment").setup()
+    end
+  },
+  { 'echasnovski/mini.cursorword',
+    version = false,
+    config = function ()
+      require("mini.cursorword").setup()
+    end
+  },
+  {
+    'echasnovski/mini.pairs',
+    version = false,
+    config = function ()
+      require("mini.pairs").setup()
+    end
+  },
+  {
+    'echasnovski/mini.surround',
+    version = false,
+    config = function ()
+      require("mini.surround").setup {
+        mappings = {
+          add = "ys",
+          delete = "ds",
+          find = "fs",
+          find_left = "Fs",
+        }
+      }
+    end
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function ()
+      require('colorizer').setup()
+    end
+  }
 }
