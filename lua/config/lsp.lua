@@ -1,6 +1,33 @@
 local lspconfig = require('lspconfig')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local servers = { 'lua_ls', 'cssls', 'pyright', 'tsserver', 'html', 'arduino_language_server', 'rust_analyzer', 'clangd', 'emmet_language_server', 'ghcide' }
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = lsp_capabilities,
+    settings = {
+      Lua = {
+        diagnostics = { globals = {'vim'} }
+      }
+    }
+  }
+end
+
+-- Do not show signs on the left of the screen
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- Disable signs
+    signs = false,
+  }
+)
+
+-- Do not show errors as virtual text
+vim.diagnostic.config({
+    virtual_text = false
+  })
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
@@ -15,9 +42,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
     vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
     vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    vim.keymap.set('n', ',ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
-    vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+    vim.keymap.set('n', ',e', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
     vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
     vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts) 
   end
@@ -29,11 +56,6 @@ local default_setup = function(server)
   })
 end
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {},
-  handlers = {default_setup},
-})
 
 local cmp = require('cmp')
 
@@ -43,7 +65,7 @@ cmp.setup({
   },
   mapping = cmp.mapping.preset.insert({
     -- Enter key confirms completion item
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({select = true}),
 
     -- Ctrl + space triggers completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -55,28 +77,4 @@ cmp.setup({
   },
 })
 
-require('mason-lspconfig').setup({
-  ensure_installed = {},
-  handlers = {
-    default_setup,
-    lua_ls = function()
-      require('lspconfig').lua_ls.setup({
-         settings = {
-          Lua = {
-            runtime = {
-              version = 'LuaJIT'
-            },
-            diagnostics = {
-              globals = {'vim'},
-            },
-            workspace = {
-              library = {
-                vim.env.VIMRUNTIME,
-              }
-            }
-          }
-        }
-      })
-    end,
-  },
-})
+require('mason').setup({})

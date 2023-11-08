@@ -1,6 +1,7 @@
 return {
   {
       'AlexvZyl/nordic.nvim',
+      enabled = false,
       lazy = false,
       priority = 1000,
       config = function()
@@ -33,6 +34,19 @@ return {
         }
         require('nordic').load()
       end,
+  },
+  {
+    "shaunsingh/nord.nvim",
+    enabled = true,
+    config = function()
+      vim.g.nord_contrast = true
+      vim.g.nord_borders = false
+      vim.g.nord_disable_background = false
+      vim.g.nord_italic = true
+      vim.g.nord_uniform_diff_background = true
+      vim.g.nord_bold = true
+      require('nord').set()
+    end,
   }
 }
 

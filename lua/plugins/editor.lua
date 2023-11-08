@@ -18,12 +18,12 @@ return {
       require('lualine').setup {
         options = {
           icons_enabled = true,
-          theme = 'auto',
+          theme = 'nord',
           component_separators = { left = '', right = ''},
           section_separators = { left = '', right = ''},
           disabled_filetypes = {
-            statusline = {},
-            winbar = {},
+            statusline = {"alpha"},
+            winbar = {"alpha"},
           },
           ignore_focus = {},
           always_divide_middle = true,
@@ -58,6 +58,9 @@ return {
         extensions = {}
       }
     end,
+  },
+  {
+
   },
   { "alvan/vim-closetag" },
   { "jiangmiao/auto-pairs" },
