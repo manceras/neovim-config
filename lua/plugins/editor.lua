@@ -104,5 +104,10 @@ return {
     config = function ()
       require('colorizer').setup()
     end
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    version = "*",
+    dependencies = { "nvim-lua/plenary.nvim" }
   }
 }
