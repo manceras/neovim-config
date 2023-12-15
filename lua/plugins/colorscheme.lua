@@ -37,7 +37,7 @@ return {
   },
   {
     "shaunsingh/nord.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
       vim.g.nord_contrast = true
       vim.g.nord_borders = false
@@ -47,6 +47,18 @@ return {
       vim.g.nord_bold = true
       require('nord').set()
     end,
+  },
+  {
+    "catppuccin/nvim",
+    enabled = true,
+    name = "catppuccin",
+    priority = 1000,
+    config = function ()
+      require("catppuccin").setup({
+          flavour = "mocha",
+        })
+    vim.cmd.colorscheme "catppuccin"
+    end
   }
 }
 
