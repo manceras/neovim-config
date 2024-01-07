@@ -26,7 +26,7 @@ local M = {
               bold = false,
               -- Bold cursorline number.
               bold_number = true,
-              -- Avialable styles: 'dark', 'light'.
+              -- Avialable styles: 'dark' or 'light'.
               theme = 'light',
               -- Blending the cursorline bg with the buffer bg.
               blend = 0.7,
