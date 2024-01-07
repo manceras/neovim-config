@@ -1,4 +1,4 @@
-return {
+local M = {
   {
       'AlexvZyl/nordic.nvim',
       enabled = false,
@@ -73,3 +73,4 @@ return {
   }
 }
 
+return M

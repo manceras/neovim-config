@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -10,3 +10,5 @@ return {
     end,
   }
 }
+
+return M

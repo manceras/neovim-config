@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     'https://github.com/nvim-neo-tree/neo-tree.nvim',
     branch = "v3.x",
@@ -33,3 +33,5 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" }
   }
 }
+
+return M
