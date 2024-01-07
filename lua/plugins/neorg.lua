@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
@@ -26,3 +26,4 @@ return {
   }
 }
 
+return M

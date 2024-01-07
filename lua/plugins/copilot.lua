@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     "zbirenbaum/copilot.lua",
     config = function()
@@ -21,3 +21,5 @@ return {
     end
   }
 }
+
+return M

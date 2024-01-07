@@ -1,4 +1,4 @@
-return {
+local M = {
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",         -- required
@@ -8,3 +8,5 @@ return {
   },
   config = true
 }
+
+return M
