@@ -41,7 +41,7 @@ return {
       end
       dashboard.section.header.opts.hl = "Type"
       dashboard.section.buttons.opts.hl = "Tag"
-      dashboard.section.footer.opts.hl = "Todo"
+      dashboard.section.footer.opts.hl = "Type"
       dashboard.opts.layout[1].val = 8
       return dashboard
     end,

@@ -64,39 +64,25 @@ return {
   },
   { "alvan/vim-closetag" },
   { "tpope/vim-repeat" },
-  { "sheerun/vim-polyglot" },
+  { "sheerun/vim-polyglot", enabled = false},
   {
-    'echasnovski/mini.comment',
+    'echasnovski/mini.nvim',
     version = false,
     config = function ()
       require("mini.comment").setup()
-    end
-  },
-  { 'echasnovski/mini.cursorword',
-    version = false,
-    config = function ()
       require("mini.cursorword").setup()
-    end
-  },
-  {
-    'echasnovski/mini.pairs',
-    version = false,
-    config = function ()
       require("mini.pairs").setup()
-    end
-  },
-  {
-    'echasnovski/mini.surround',
-    version = false,
-    config = function ()
       require("mini.surround").setup {
         mappings = {
           add = "ys",
           delete = "ds",
           find = "fs",
           find_left = "Fs",
+          replace = "cs"
         }
       }
+      require("mini.operators").setup()
+      require("mini.animate").setup()
     end
   },
   {
@@ -109,5 +95,13 @@ return {
     "nvim-telescope/telescope.nvim",
     version = "*",
     dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+    config = function ()
+      require('ibl').setup()
+    end
   }
 }

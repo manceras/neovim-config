@@ -1,4 +1,5 @@
 vim.g.mapleader=' '
+vim.g.maplocalleader=','
 vim.opt.number = true
 vim.opt.numberwidth = 1
 vim.opt.cursorline = true
