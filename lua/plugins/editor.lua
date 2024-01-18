@@ -11,11 +11,8 @@ local M = {
   {
     'echasnovski/mini.nvim',
     version = false,
-    config = function ()
-      require("mini.comment").setup()
-      require("mini.cursorword").setup()
-      require("mini.pairs").setup()
-      require("mini.surround").setup {
+    opts = {
+      surround = {
         mappings = {
           add = "ys",
           delete = "ds",
@@ -24,13 +21,30 @@ local M = {
           replace = "cs"
         }
       }
+    },
+    config = function(_, opts)
+      require("mini.comment").setup()
+      require("mini.cursorword").setup()
+      require("mini.pairs").setup()
+      require("mini.surround").setup(_, opts.surround)
       require("mini.operators").setup()
-      require("mini.animate").setup()
     end
   }, {
     "nvim-telescope/telescope.nvim",
     version = "*",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+        pickers = {
+          find_files = {
+            find_commands = { "rg", "--files", "--hidden", "-g", "!.git" }
+          }
+        }
+    },
+    config = function (_, opts)
+      require("telescope").setup(opts)
+    end
+  }, {
+    "jbyuki/nabla.nvim"
   }
 }
 
