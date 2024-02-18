@@ -1,32 +1,16 @@
 local M = {
   {
-    'https://github.com/nvim-neo-tree/neo-tree.nvim',
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  },
-  {
     'echasnovski/mini.nvim',
     version = false,
-    opts = {
-      surround = {
-        mappings = {
-          add = "ys",
-          delete = "ds",
-          find = "fs",
-          find_left = "Fs",
-          replace = "cs"
-        }
-      }
-    },
-    config = function(_, opts)
+    config = function()
       require("mini.comment").setup()
       require("mini.cursorword").setup()
-      require("mini.pairs").setup()
-      require("mini.surround").setup(_, opts.surround)
+      require("mini.pairs").setup({
+        mappings = {
+          [' '] = { action = 'open', pair = '  ', neigh_pattern = '[%(%[{][%)%]}]' },
+        }
+      })
+      require("mini.surround").setup()
       require("mini.operators").setup()
     end
   }, {
@@ -34,17 +18,21 @@ local M = {
     version = "*",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-        pickers = {
-          find_files = {
-            find_commands = { "rg", "--files", "--hidden", "-g", "!.git" }
-          }
+      pickers = {
+        find_files = {
+          find_command = { "rg", "--files", "--hidden", "-g", "!.git", "-g", "!node_modules" }
+        },
+        git_files = {
+          find_command = { "rg", "--files", "--hidden", "-g", "!.git", "-g", "!node_modules" }
         }
+      }
     },
     config = function (_, opts)
       require("telescope").setup(opts)
     end
   }, {
-    "jbyuki/nabla.nvim"
+    "ThePrimeagen/harpoon",
+    dependencies = { "nvim-lua/plenary.nvim" },
   }
 }
 

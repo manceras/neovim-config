@@ -7,7 +7,7 @@ local M = {
             enabled = true,
             auto_trigger = true,
             keymap = {
-              accept = '<C-e>'
+              accept = "<C-e>"
             }
           },
           panel = { enabled = false },

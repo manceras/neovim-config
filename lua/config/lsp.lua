@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = { 'lua_ls', 'cssls', 'pyright', 'tsserver', 'html', 'arduino_language_server', 'rust_analyzer', 'clangd', 'emmet_language_server', 'ghcide' }
+local servers = { 'lua_ls', 'cssls', 'pylsp', 'tsserver', 'html', 'arduino_language_server', 'rust_analyzer', 'clangd', 'emmet_language_server', 'ghcide' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -42,10 +42,14 @@ cmp.setup({
   sources = {
     {name = 'nvim_lsp'},
   },
+  preselect = cmp.PreselectMode.None,
+  completion = {
+    completeopt = 'menu,menuone,noselect',
+  },
   mapping = cmp.mapping.preset.insert({
     -- Enter key confirms completion item
-    ['<CR>'] = cmp.mapping.confirm({select = true}),
-
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+   
     -- Ctrl + space triggers completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
   }),
